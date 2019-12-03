@@ -3,12 +3,17 @@ package com.javahao.controller;
 
 import com.javahao.pojo.User;
 import com.javahao.service.UserService;
+import com.javahao.util.ConstantUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by anzIhao on 2019/12/2.
@@ -20,17 +25,20 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/log")
-    public String login(@RequestBody User user){
+    public String login(@RequestBody User user, Model model, HttpServletRequest request){
         String name=user.getUname();
         String pass=user.getUpass();
-
-        try{
-            userService.selectByNameAndPass(name,pass);
+        Map map=new HashMap();
+        map.put("name",name);
+        map.put("pass",pass);
+        User user1=userService.selectByNameAndPass(name,pass);
+        if(user1!=null){
+            //用户存在，往session里面存储用户
+            request.getSession().setAttribute(ConstantUtils.USER_SESSION_KEY,user);
             return "success";
-        }catch(Exception e){
-
+        }else{
+            model.addAttribute("ErrMsg","用户名与密码不匹配");
         }
-
         return "failure";
     }
     @RequestMapping("/selectall")
@@ -93,5 +101,10 @@ public class UserController {
 
         return "failure";
 
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute(ConstantUtils.USER_SESSION_KEY);
+        return "success";
     }
 }
