@@ -12,12 +12,12 @@
     <delete id="delete" parameterType="int">
         delete from user where uid=#{id}
     </delete>
-    <select id="findById" parameterType="id" resultType="com.javahao.pojo.User">
+    <select id="findById" parameterType="int" resultType="com.javahao.pojo.User">
         select * from user where uid=#{id}
     </select>
     <insert id="insert" parameterType="com.javahao.pojo.User">
         insert into user (uid,uname,email,tel,dname,data,symptom,status,upass)
-        values (uid=#{id},uname=#{name},email=#{email},tel=#{tel},dname=#{dname},data=#{data},symptom=#{symptom},status=#{status},upass=#{upass})
+        values (uname=#{name},email=#{email},tel=#{tel},dname=#{dname},data=#{data},symptom=#{symptom},status=#{status},upass=#{upass})
     </insert>
     <update id="update" parameterType="com.javahao.pojo.User">
         update user
