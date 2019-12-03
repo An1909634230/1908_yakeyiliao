@@ -1,0 +1,7 @@
+server:
+  port: 8089
+qiniu:
+  accessKey: 2-NdUfZyi6ky6HJSUwKma88l1XakWBb1T4GSjD1X
+  secretKey: OT0ahgL03-acHTxWGL28Gh5s6Am3YaWBJionxgh3
+  bucket:  1908-javahao
+  url: http://q1bqrs5v9.bkt.clouddn.com/

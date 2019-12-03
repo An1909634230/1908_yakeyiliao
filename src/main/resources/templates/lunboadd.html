@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Fileinput Demo</title>
+    <link href="/static/lunbo/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/lunbo/css/bootstrap-fileinput.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h3>轮播图上传</h3>
+        <form th:action="@{/addLunBo}" method="POST" enctype="multipart/form-data">
+            <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
+                <div class="h4">图片预览</div>
+                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/static/lunbo/images/noimage.png" alt="" />
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                        <span class="btn btn-primary btn-file">
+                            <span class="fileinput-new">选择文件</span>
+                            <span class="fileinput-exists">换一张</span>
+                            <input type="file" name="file" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                        </span>
+                        <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" id="uploadSubmit" class="btn btn-info">上传图片</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="/static/lunbo/js/jquery.min.js"></script>
+<script src="/static/lunbo/js/bootstrap-fileinput.js"></script>
+
+</body>
+</html>
