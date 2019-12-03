@@ -3,4 +3,35 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.javahao.dao.UserDao">
+    <select id="selectAll" resultType="com.javahao.pojo.User">
+        select * from user 
+    </select>
+    <select id="selectByNameAndPass"  resultType="com.javahao.pojo.User">
+        select * from where uname=#{name} and upass=#{pass}
+    </select>
+    <delete id="delete" parameterType="int">
+        delete from user where uid=#{id}
+    </delete>
+    <select id="findById" parameterType="id" resultType="com.javahao.pojo.User">
+        select * from user where uid=#{id}
+    </select>
+    <insert id="insert" parameterType="com.javahao.pojo.User">
+        insert into user (uid,uname,email,tel,dname,data,symptom,status,upass)
+        values (uid=#{id},uname=#{name},email=#{email},tel=#{tel},dname=#{dname},data=#{data},symptom=#{symptom},status=#{status},upass=#{upass})
+    </insert>
+    <update id="update" parameterType="com.javahao.pojo.User">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="uid!=null">uid=#{id}</if>
+            <if test="uname!=null">uname=#{name}</if>
+            <if test="email!=null">email=#{email}</if>
+            <if test="tel!=null">tel=#{tel}</if>
+            <if test="dname!=null">dname=#{dname}</if>
+            <if test="symptom!=null">symptom=#{symptom}</if>
+            <if test="data!=null">data=#{data}</if>
+            <if test="status!=null">status=#{status}</if>
+            <if test="upass!=null">upass=#{pass}</if>
+        </trim>
+        where id=#{id}
+    </update>
 </mapper>
