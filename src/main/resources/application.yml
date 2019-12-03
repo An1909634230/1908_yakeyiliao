@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8081
 qiniu:
   accessKey: 2-NdUfZyi6ky6HJSUwKma88l1XakWBb1T4GSjD1X
   secretKey: OT0ahgL03-acHTxWGL28Gh5s6Am3YaWBJionxgh3

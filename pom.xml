@@ -70,12 +70,16 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <!--支付宝功能-->
-        <dependency>
+<!--        <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
             <version>3.3.49.ALL</version>
+<<<<<<< Updated upstream
         </dependency>
 
+=======
+        </dependency>-->
+>>>>>>> Stashed changes
     </dependencies>
 
 </project>
