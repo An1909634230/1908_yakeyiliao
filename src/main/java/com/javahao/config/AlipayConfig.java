@@ -27,10 +27,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhK9g6psJS1lYJjZtzy90eLwJgP3iBapnFr4FE1wR6TZspriEs+1s+lJU6ZvaHBchvgvoYH7ArWdIV+Yzh4AwMlM5pA+NCIalvqkdMWJvQ8jJasODTxFSI8VSZO1/DZbWRe7XbtE+CvRDF9KGP/nhte0SsH8yuVXnp1GgKl6DqYT7PFwabFoQNkzoPRJmqzRevxpy0V/7mGDsyTl75kQMyFqq/Ai1SuesRZCsYYnTuDZKTZEqQHRCp6NavBSgPHwtIQLGZhMYZf4qBRzT8aiKKteQpKBNOT8z1CURIK1KcW5vMThDZKEBkg72qGSx9TMYKbxHYyP8pIPF2Uk6vQ9KEQIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url ="http://www.baidu.com";
+    public static String notify_url ="https://openapi.alipaydev.com/gateway.do";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://www.baidu.com";
+    public static String return_url =  "http://localhost:8080";
 
     // 签名方式
     public static String sign_type = "RSA2";

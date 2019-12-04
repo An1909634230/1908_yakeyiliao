@@ -16,20 +16,26 @@ import java.util.Random;
 @Component
 public class AlipayUtils {
 
-    public String pay() throws AlipayApiException {
-        Pay pay = new Pay();
+    public String pay(Pay pay,String orderNumber) throws AlipayApiException {
+
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", "utf-8", AlipayConfig.alipay_public_key, "RSA2");
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
-        Random random = new Random();
-        double dd = random.nextDouble() / 3.1415927;
+        //订单编号
+        String order_number=null;
+        if(orderNumber!=null){
+          order_number=orderNumber;
+        }else{
+            Random random = new Random();
+            double dd = random.nextDouble() / 3.1415927/3.1415927;
+            order_number = Double.toString(dd).substring(2, 20);
+        }
+        System.out.println(order_number);
         //付款钱数赋值
         double money = pay.getMoney();
         //付款主题
         String subject = pay.getTheme();
-        String order_number = Double.toString(dd).substring(2, 18);
-        //System.out.println(Double.toString(dd).substring(2, 18));
         alipayRequest.setBizContent("{" +
                 "    \"out_trade_no\":\"" + order_number + "\"," +
                 "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
