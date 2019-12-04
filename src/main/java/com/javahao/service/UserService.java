@@ -14,4 +14,5 @@ public interface UserService {
     void insert(User user);
     User findById(Integer id);
     void update(User user);
+    void SendSimpleMail(String to);
 }

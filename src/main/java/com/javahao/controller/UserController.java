@@ -27,7 +27,6 @@ public class UserController {
     public String login(@RequestBody User user)  {
         String uname=user.getUname();
         String upass=user.getUpass();
-
         User user1=userService.selectByNameAndPass(uname,upass);
         if(user1!=null){
             return "success";
@@ -44,16 +43,15 @@ public class UserController {
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody User user) {
-
+        String to=user.getEmail();
         try {
             userService.insert(user);
+            userService.SendSimpleMail(to);
             return "success";
         } catch (Exception e) {
 
         }
-
         return "failure";
-
     }
 
     @RequestMapping("/findOne")
@@ -63,11 +61,8 @@ public class UserController {
             userService.findById(id);
             return "success";
         } catch (Exception e) {
-
         }
-
         return "failure";
-
     }
 
     @RequestMapping("/update")
@@ -77,11 +72,8 @@ public class UserController {
             userService.update(user);
             return "success";
         } catch (Exception e) {
-
         }
-
         return "failure";
-
     }
 
     @RequestMapping("/delete")
@@ -91,16 +83,20 @@ public class UserController {
             userService.delete(id);
             return "success";
         } catch (Exception e) {
+        }
+        return "failure";
+    }
+    @RequestMapping(value = "/sendmail", method = RequestMethod.POST)
+    public String sendmail(@RequestBody User user){
 
+        String to=user.getEmail();
+        try{
+            userService.SendSimpleMail(to);
+            return "success";
+        }catch(Exception e){
+            System.out.println("forbiden");
         }
 
-        return "failure";
-
-    }
-
-    @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().removeAttribute(ConstantUtils.USER_SESSION_KEY);
-        return "success";
+        return "failee";
     }
 }

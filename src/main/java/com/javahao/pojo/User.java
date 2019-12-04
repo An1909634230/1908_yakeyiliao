@@ -22,4 +22,6 @@ public class User {
     private String symptom;
     private Integer status;
     private String upass;
+    private String member;
+    private Integer money;
 }
