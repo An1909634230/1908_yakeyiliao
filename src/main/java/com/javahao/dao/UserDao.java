@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper
 public interface UserDao {
     List<User> selectAll();
-    User selectByNameAndPass(String uname,String upass);
     void delete(Integer id);
     void insert(User user);
     User findById(Integer id);

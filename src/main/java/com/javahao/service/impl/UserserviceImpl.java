@@ -43,10 +43,7 @@ public class UserserviceImpl implements UserService {
         }
     }
 
-    @Override
-    public User selectByNameAndPass(String uname, String upass) {
-        return userDao.selectByNameAndPass(uname,upass);
-    }
+
 
     @Override
     public void delete(Integer id) {

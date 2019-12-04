@@ -34,11 +34,10 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="#" th:text="${session.name}"></a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                <dd><a href="#">个人信息</a></dd>
-                <dd><a href="#">切换帐号</a></dd>
-                <dd><a href="login.html">退出</a></dd>
+                <dd><a href="/log">切换帐号</a></dd>
+                <dd><a href="/log">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="#">前台首页</a></li>
@@ -121,20 +120,6 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="html/member-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员列表</cite>
-
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="html/member-del.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员删除</cite>
-
-                        </a>
-                    </li>
-                    <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe70b;</i>
                             <cite>会员管理</cite>
@@ -142,20 +127,12 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a _href="html/member-del.html">
+                                <a _href="/userfindAll">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>会员列表</cite>
 
                                 </a>
                             </li >
-                            <li>
-                                <a _href="html/member-del.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员删除</cite>
-
-                                </a>
-                            </li>
-
                         </ul>
                     </li>
                 </ul>

@@ -2,8 +2,10 @@ package com.javahao.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 /**
@@ -20,8 +22,6 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date data;
     private String symptom;
-    private Integer status;
-    private String upass;
     private String member;
     private Integer money;
 }

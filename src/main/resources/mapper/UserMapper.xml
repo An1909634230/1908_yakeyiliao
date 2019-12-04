@@ -6,9 +6,6 @@
     <select id="selectAll" resultType="com.javahao.pojo.User">
         select * from user 
     </select>
-    <select id="selectByNameAndPass"  resultType="com.javahao.pojo.User">
-        select * from user  where uname=#{0} and upass=#{1}
-    </select>
     <delete id="delete" parameterType="int">
         delete from user where uid=#{id}
     </delete>
@@ -17,7 +14,7 @@
     </select>
     <insert id="insert" parameterType="com.javahao.pojo.User">
         insert into user (uname,email,tel,dname,data,symptom,status,upass)
-        values (#{uname},#{email},#{tel},#{dname},#{data},#{symptom},#{status},#{upass})
+        values (#{uname},#{email},#{tel},#{dname},#{data},#{symptom})
     </insert>
     <update id="update" parameterType="com.javahao.pojo.User">
         update user
@@ -29,8 +26,6 @@
             <if test="dname!=null">dname=#{dname}</if>
             <if test="symptom!=null">symptom=#{symptom}</if>
             <if test="data!=null">data=#{data}</if>
-            <if test="status!=null">status=#{status}</if>
-            <if test="upass!=null">upass=#{upass}</if>
         </trim>
         where uid=#{uid}
     </update>

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserService {
     List<User> selectAll();
-    User selectByNameAndPass(String uname,String upass);
+
     void delete(Integer id);
     void insert(User user);
     User findById(Integer id);

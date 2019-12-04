@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -17,31 +18,30 @@ import java.util.Map;
 /**
  * Created by anzIhao on 2019/12/2.
  */
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/log", method = RequestMethod.POST)
-    public String login(@RequestBody User user)  {
-        String uname=user.getUname();
-        String upass=user.getUpass();
-        User user1=userService.selectByNameAndPass(uname,upass);
-        if(user1!=null){
-            return "success";
-        }
-        return "failure";
-    }
+//    @RequestMapping("/userfindAll")
+//    public ModelAndView findAlla() {
+//        List<User> list = userService.selectAll();
+//        ModelAndView m = new ModelAndView("user");
+//        m.addObject("list", list);
+//        return m;
+//    }
 
 
     @RequestMapping("/selectall")
+    @ResponseBody
     public List<User> selectall() {
         List<User> list = userService.selectAll();
         return list;
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @ResponseBody
     public String insert(@RequestBody User user) {
         String to=user.getEmail();
         try {
@@ -55,6 +55,7 @@ public class UserController {
     }
 
     @RequestMapping("/findOne")
+    @ResponseBody
     public String findOne(@RequestBody User user) {
         Integer id = user.getUid();
         try {
@@ -66,6 +67,7 @@ public class UserController {
     }
 
     @RequestMapping("/update")
+    @ResponseBody
     public String update(@RequestBody User user) {
         System.out.println(user);
         try {
@@ -77,6 +79,7 @@ public class UserController {
     }
 
     @RequestMapping("/delete")
+    @ResponseBody
     public String delete(@RequestBody User user) {
         Integer id = user.getUid();
         try {
@@ -87,6 +90,7 @@ public class UserController {
         return "failure";
     }
     @RequestMapping(value = "/sendmail", method = RequestMethod.POST)
+    @ResponseBody
     public String sendmail(@RequestBody User user){
 
         String to=user.getEmail();

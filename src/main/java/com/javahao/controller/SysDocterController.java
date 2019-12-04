@@ -32,7 +32,7 @@ public class SysDocterController {
     private String url;
 
     @RequestMapping("/login")
-    public String dealLogin(DocterShiro docterShiro) {
+    public String dealLogin(DocterShiro docterShiro, HttpServletRequest request) {
         String name = docterShiro.getDname();
         String password = docterShiro.getPassword();
         try {
@@ -40,6 +40,7 @@ public class SysDocterController {
             UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(name, password);
             subject.login(usernamePasswordToken);
             if (subject.isAuthenticated()) {
+                request.getSession().setAttribute("name", name);
                 return "redirect:/admin";
             }
         } catch (Exception e) {
@@ -122,7 +123,7 @@ public class SysDocterController {
         return "redirect:/adminfindAll";
     }
 
-
+    @RequiresPermissions(value = {"find"})
     @RequestMapping("/doctorfindAll")
     public ModelAndView findAlld() {
         List<DocterShiro> list = sds.findAll();
@@ -131,7 +132,7 @@ public class SysDocterController {
         return m;
     }
 
-
+    @RequiresPermissions(value = {"insert"})
     @RequestMapping("/addyishen")
     public String addyisheng(String shijian, String biaoti, String dname, String intro, String intros, String honor, String source, @RequestParam("file") MultipartFile muli) throws UnsupportedEncodingException {
         String upload = uploadUtils.upload(muli);
@@ -158,13 +159,14 @@ public class SysDocterController {
         return modelAndView;
     }
 
+    @RequiresPermissions(value = {"delete"})
     @RequestMapping(value = "/yishengdel/{did}", method = RequestMethod.GET)
     public String delyisheng(@PathVariable("did") Integer did) {
         sds.deleteSer(did);
         return "redirect:/doctorfindAll";
     }
 
-
+    @RequiresPermissions(value = {"update"})
     @RequestMapping(value = "/updateyisheng", method = RequestMethod.POST)
     public String update(String did, @RequestParam("file") MultipartFile muli, String shijian, String biaoti, String dname, String intro, String intros, String honor, String source) throws UnsupportedEncodingException {
         DocterShiro docterShiro = new DocterShiro();
@@ -186,9 +188,10 @@ public class SysDocterController {
         sds.updateSer(docterShiro);
         return "redirect:/doctorfindAll";
     }
+
     @RequestMapping("/doctrofindAll")
     @ResponseBody
-    public List<DocterShiro>findAllQ() {
+    public List<DocterShiro> findAllQ() {
         List<DocterShiro> list = sds.findAll();
         return list;
     }
