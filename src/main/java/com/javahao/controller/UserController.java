@@ -7,10 +7,7 @@ import com.javahao.util.ConstantUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -21,23 +18,20 @@ import java.util.Map;
  * Created by anzIhao on 2019/12/2.
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/log", method = RequestMethod.POST)
-    public String login(@RequestBody User user) {
-        String name = user.getUname();
-        String pass = user.getUpass();
-        System.out.println(name + pass);
-        try {
-            userService.selectByNameAndPass(name, pass);
+    public String login(@RequestBody User user)  {
+        String uname=user.getUname();
+        String upass=user.getUpass();
+
+        User user1=userService.selectByNameAndPass(uname,upass);
+        if(user1!=null){
             return "success";
-        } catch (Exception e) {
-
         }
-
         return "failure";
     }
 
@@ -50,7 +44,7 @@ public class UserController {
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String insert(@RequestBody User user) {
-        System.out.println("进来了");
+
         try {
             userService.insert(user);
             return "success";
@@ -78,7 +72,7 @@ public class UserController {
 
     @RequestMapping("/update")
     public String update(@RequestBody User user) {
-
+        System.out.println(user);
         try {
             userService.update(user);
             return "success";
