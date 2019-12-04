@@ -12,4 +12,5 @@ public class Gallery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer sid;
     private String spic;
+    private String spicx;
 }

@@ -11,13 +11,14 @@
 <body>
 <div class="container">
     <div class="page-header">
-        <h3>图片上传</h3>
-        <form th:action="@{/ginsert}" method="POST" enctype="multipart/form-data">
+        <h3>案例图片修改</h3>
+        <form th:action="@{/galleryupdate}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="sid" class="form-control" id="lid" th:value="${gallery.sid}">
             <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
-                <div class="h4">图片预览</div>
+                <div class="h4">案例小图片修改</div>
                 <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
                     <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/static/lunbo/images/noimage.png" alt="" />
+                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;"  th:src="${gallery.spic}"alt="" />
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                     <div>
@@ -25,6 +26,23 @@
                             <span class="fileinput-new">选择文件</span>
                             <span class="fileinput-exists">换一张</span>
                             <input type="file" name="file" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+                        </span>
+                        <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" id="uploadForma" enctype='multipart/form-data'>
+                <div class="h4">案例大图片修改</div>
+                <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUploada">
+                    <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
+                        <img id='picImga' style="width: 100%;height: auto;max-height: 140px;" th:src="${gallery.spicx}" alt="" />
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                    <div>
+                        <span class="btn btn-primary btn-file">
+                            <span class="fileinput-new">选择文件</span>
+                            <span class="fileinput-exists">换一张</span>
+                            <input type="file" name="filea" id="picIDa" accept="image/gif,image/jpeg,image/x-png"/>
                         </span>
                         <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
                     </div>
@@ -41,3 +59,4 @@
 
 </body>
 </html>
+

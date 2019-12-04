@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Fileinput Demo</title>
+    <link href="/static/lunbo/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/lunbo/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/lunbo/css/default.css">
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <form th:action="@{/adminupdate}" method="POST" enctype="multipart/form-data" class="form-signin">
+            <input type="hidden" name="did" class="form-control" id="did" th:value="${doctro.did}">
+            <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
+                <div class="form-group">
+                    <label for="inputTitle">姓名</label>
+                    <input type="text" id="inputTitle" name="dname" class="form-control" th:value="${doctro.dname}">
+                </div>
+                <div class="form-group">
+                    <label for="inputTitlea">密码</label>
+                    <input type="password" id="inputTitlea" name="password" class="form-control" th:value="${doctro.password}">
+                </div>
+                <div class="form-group">
+                    <label for="a">状态</label>
+                    <select id="a"  name="zhuangtai" class="form-control" th:value="${doctro.zhuangtai}">
+                        <option>超级管理员</option>
+                        <option>普通查询</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputTitleb">角色</label>
+                    <input type="text" id="inputTitleb" name="juese" class="form-control" th:value="${doctro.juese}">
+                </div>
+            </div>
+            <button type="submit" id="uploadSubmit" class="btn btn-info">提交</button>
+        </form>
+    </div>
+</div>
+
+
+<script src="/static/lunbo/js/jquery.min.js"></script>
+<script src="/static/lunbo/js/bootstrap-fileinput.js"></script>
+<script type="text/javascript" src="/static/lunbo/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="/static/lunbo/js/jquery.charactercounter.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.javahao.dao.SysPermissionDao">
+    <resultMap id="BaseResult" type="com.javahao.pojo.TbSysPermission">
+        <id column="permission_id" property="permissionId"></id>
+        <result column="per_name" property="perName"></result>
+    </resultMap>
+
+    <select id="findUserPermissionByUserName" resultMap="BaseResult" parameterType="string">
+        select sp.* from
+        doctor su,
+        tb_sys_role sr,
+        tb_sys_permission sp,
+        tb_user_role ur,
+        tb_role_permission rp where
+        su.zhuangtai = ur.id and ur.role_id =sr.role_id
+        and sr.role_id =rp.role_id and rp.permission_id = sp.permission_id and su.dname =#{dname}
+    </select>
+</mapper>

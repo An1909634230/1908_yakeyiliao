@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -19,7 +18,7 @@
                 <div class="h4">图片预览</div>
                 <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
                     <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/static/lunbo/images/noimage.png" alt="" />
+                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" th:src="${lunbo.lpic}"  alt="" />
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                     <div>
@@ -43,5 +42,4 @@
 
 </body>
 </html>
-
 

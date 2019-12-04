@@ -12,21 +12,40 @@
 <body>
 <div class="container">
     <div class="page-header">
-        <form th:action="@{/serupdate}" method="POST" enctype="multipart/form-data" class="form-signin">
-            <input type="hidden" name="seid" class="form-control" id="lid" th:value="${ser.seid}">
+        <form th:action="@{/addyishen}" method="POST" enctype="multipart/form-data" class="form-signin">
             <div class="form-group" id="uploadForm" enctype='multipart/form-data'>
                 <div class="form-group">
-                    <label for="inputTitle">标题</label>
-                    <input type="text" id="inputTitle" name="sename" class="form-control" th:value="${ser.sename}">
+                    <label for="inputTitle">医生名称</label>
+                    <input type="text" id="inputTitle" name="dname" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription">描述</label>
-                    <textarea id="inputDescription"    name="seintro" class="form-control" th:value="${ser.seintro}"></textarea>
+                    <label for="inputDescriptiond">时间</label>
+                    <textarea id="inputDescriptiond"    name="shijian" class="form-control"></textarea>
                 </div>
-                <div class="h4">服务内容图片上传</div>
+                <div class="form-group">
+                    <label for="inputDescriptionr">标题</label>
+                    <textarea id="inputDescriptionr"    name="biaoti" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">信息一</label>
+                    <textarea id="inputDescription"    name="intro" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescriptiona">信息二</label>
+                    <textarea id="inputDescriptiona"    name="intros" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescriptionab">荣誉</label>
+                    <textarea id="inputDescriptionab"    name="honor" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescriptionabc">领域</label>
+                    <textarea id="inputDescriptionabc"    name="source" class="form-control"></textarea>
+                </div>
+                <div class="h4">医生图片上传</div>
                 <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
                     <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" th:src="${ser.sepic}" alt="" />
+                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="/static/lunbo/images/noimage.png" alt="" />
                     </div>
                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                     <div>
@@ -39,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" id="uploadSubmit" class="btn btn-info">上传图片</button>
+            <button type="submit" id="uploadSubmit" class="btn btn-info">提交</button>
         </form>
     </div>
 </div>

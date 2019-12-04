@@ -3,6 +3,7 @@ package com.javahao.controller;
 import com.javahao.pojo.LunBo;
 import com.javahao.service.LunBoService;
 import com.javahao.util.UploadUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mock.web.MockMultipartFile;
@@ -45,7 +46,7 @@ public class LunBoController {
     public String show5() {
         return "lunboupdate";
     }
-
+    @RequiresPermissions(value = {"find"})
     @RequestMapping("/lunfinAll")
     public ModelAndView findAll() {
         List<LunBo> list = lbs.finAll();
@@ -60,7 +61,7 @@ public class LunBoController {
         List<LunBo> list = lbs.finAll();
         return list;
     }
-
+    @RequiresPermissions(value = {"insert"})
     @RequestMapping("/addLunBo")
     public String addcar(@RequestParam("file") MultipartFile muli) throws UnsupportedEncodingException {
         String upload = uploadUtils.upload(muli);
@@ -77,7 +78,7 @@ public class LunBoController {
         modelAndView.addObject("lunbo", lbs.findLunBoLid(lid));
         return modelAndView;
     }
-
+    @RequiresPermissions(value = {"update"})
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(String lid, @RequestParam("file") MultipartFile muli) throws UnsupportedEncodingException {
         LunBo lunBo = new LunBo();
@@ -90,7 +91,7 @@ public class LunBoController {
         lbs.updateItems(lunBo);
         return "redirect:/lunfinAll";
     }
-
+    @RequiresPermissions(value = {"delete"})
     @RequestMapping(value = "/del/{lid}", method = RequestMethod.GET)
     public String del(@PathVariable("lid") Integer lid) {
         lbs.deleteLunBo(lid);

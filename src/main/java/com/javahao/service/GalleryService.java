@@ -1,13 +1,22 @@
 package com.javahao.service;
 
 import com.javahao.pojo.Gallery;
+import com.javahao.pojo.Ser;
 
 import java.util.List;
 
+/**
+ * Created by anzIhao on 2019/12/3.
+ */
 public interface GalleryService {
-    List<Gallery> selectAll();
-    void delete(Integer sid);
-    void update(Gallery gallery);
-    Gallery selectOne(Integer sid);
-    void insert(Gallery gallery);
+
+    public List<Gallery> findAll();
+
+    public void add(Gallery gallery);
+
+    public void deleteGallery(Integer sid);
+
+    public Gallery findGalleryBysid(Integer sid);
+
+    public void updateGallery(Gallery gallery);
 }

@@ -3,77 +3,94 @@ package com.javahao.controller;
 import com.javahao.pojo.Gallery;
 import com.javahao.service.GalleryService;
 import com.javahao.util.UploadUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+/**
+ * Created by anzIhao on 2019/12/3.
+ */
 @Controller
 public class GalleryController {
     @Autowired
-    private GalleryService galleryService;
-    @Value("${qiniu.url}")
-    private  String url;
+    private GalleryService gs;
     @Autowired
-    private UploadUtils up;
+    private UploadUtils uploadUtils;
+    @Value("${qiniu.url}")
+    private String url;
+    @RequiresPermissions(value = {"find"})
+    @RequestMapping("/galleryfind")
+    public ModelAndView findAll() {
+        List<Gallery> list = gs.findAll();
+        ModelAndView m = new ModelAndView("gallery");
+        m.addObject("list", list);
+        return m;
+    }
 
-    @RequestMapping("/{index}")
-    public String all(@PathVariable("index") String index) {
+    @RequestMapping("/galleryadd")
+    public String show4() {
+        return "galleryadd";
+    }
 
-        return index;
-    }
-    @RequestMapping(value = "/gselectAll")
-    public String selectAll(Model model){
-        List<Gallery> all = galleryService.selectAll();
-        model.addAttribute("all",all);
-        return "gselectAll";
-    }
-    @RequestMapping(value = "/gselectOne/{sid}")
-    public String selectOne(@PathVariable("sid")Integer sid, Model model){
-        Gallery gallery = galleryService.selectOne(sid);
-        model.addAttribute("gallery",gallery);
-        return "gupdate";
-    }
-    @RequestMapping(value = "/gdelete/{sid}",method = RequestMethod.GET)
-    public String delete(@PathVariable("sid")Integer sid){
-        galleryService.delete(sid);
-        return "redirect:/gselectAll";
-    }
-    @RequestMapping(value = "/gupdate")
-    public String update(Integer sid){
-        galleryService.delete(sid);
 
-        return "redirect:/gselectAll";
-    }
-//    @RequestMapping(value = "/gupdate", method = RequestMethod.POST)
-//    public String update(Gallery gallery,@RequestParam("file")MultipartFile muli) throws Exception{
-//
-//        String originalFilename = muli.getOriginalFilename();
-//
-//        if (!originalFilename.equals("")){
-//            String upload = up.upload(muli);
-//            gallery.setSpic(upload);
-//        }
-//        galleryService.update(gallery);
-//
-//
-//        return "redirect:/gselectAll";
-//    }
-
-    @RequestMapping(value = "/ginsert",method = RequestMethod.POST)
-    public String insert(@RequestParam("file") MultipartFile muli) throws UnsupportedEncodingException {
-        String upload = up.upload(muli);
-        Gallery gallery=new Gallery();
+    @RequiresPermissions(value = {"insert"})
+    @RequestMapping("/addgallery")
+    public String addcar(@RequestParam("file") MultipartFile muli, @RequestParam("filea") MultipartFile mulia) throws UnsupportedEncodingException {
+        String upload = uploadUtils.upload(muli);
+        String uploada = uploadUtils.upload(mulia);
+        Gallery gallery= new Gallery();
         gallery.setSpic(url + upload);
-        galleryService.insert(gallery);
-        return "redirect:/gselectAll";
+        gallery.setSpicx(url+uploada);
+        gs.add(gallery);
+        return "redirect:/galleryfind";
+    }
+
+
+    @RequestMapping(value = "/galleryup/{sid}", method = RequestMethod.GET)
+    public ModelAndView up(@PathVariable("sid") Integer sid) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("galleryupdate");
+        modelAndView.addObject("gallery", gs.findGalleryBysid(sid));
+        return modelAndView;
+    }
+
+    @RequiresPermissions(value = {"update"})
+    @RequestMapping(value = "/galleryupdate", method = RequestMethod.POST)
+    public String update(String sid, @RequestParam("file") MultipartFile muli,@RequestParam("filea") MultipartFile mulia) throws UnsupportedEncodingException {
+        Gallery gallery=new Gallery();
+        gallery.setSid(Integer.valueOf(sid));
+        String originalFilename = muli.getOriginalFilename();
+        if (!originalFilename.equals("")) {
+            String upload = uploadUtils.upload(muli);
+            gallery.setSpic(url + upload);
+        }
+        if (!originalFilename.equals("")) {
+            String uploada = uploadUtils.upload(mulia);
+            gallery.setSpicx(url + uploada);
+        }
+        gs.updateGallery(gallery);
+        return "redirect:/galleryfind";
+    }
+    @RequiresPermissions(value = {"delete"})
+    @RequestMapping(value = "/gallerydel/{sid}", method = RequestMethod.GET)
+    public String del(@PathVariable("sid") Integer sid) {
+        gs.deleteGallery(sid);
+        return "redirect:/galleryfind";
+    }
+
+
+    @RequestMapping("/galleryfindAll")
+    @ResponseBody
+    public List<Gallery>findAllQ() {
+        List<Gallery> list = gs.findAll();
+        return list;
     }
 }

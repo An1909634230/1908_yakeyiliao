@@ -16,4 +16,6 @@ public interface SerService {
     public Ser findSerseid(Integer seid);
 
     public void updateSer(Ser ser);
+
+
 }

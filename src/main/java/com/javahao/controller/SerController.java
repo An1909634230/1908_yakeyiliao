@@ -4,6 +4,7 @@ import com.javahao.pojo.LunBo;
 import com.javahao.pojo.Ser;
 import com.javahao.service.SerService;
 import com.javahao.util.UploadUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,7 @@ public class SerController {
         return "serveradd";
     }
 
+    @RequiresPermissions(value = {"find"})
     @RequestMapping("/servicefindAll")
     public ModelAndView findAll() {
         List<Ser> list = ss.findAll();
@@ -38,7 +40,7 @@ public class SerController {
         m.addObject("list", list);
         return m;
     }
-
+    @RequiresPermissions(value = {"insert"})
     @RequestMapping("/addservice")
     public String addcar(@RequestParam("file") MultipartFile muli, String seintro, String sename) throws UnsupportedEncodingException {
         String upload = uploadUtils.upload(muli);
@@ -49,7 +51,7 @@ public class SerController {
         ss.add(ser);
         return "redirect:/servicefindAll";
     }
-
+    @RequiresPermissions(value = {"delete"})
     @RequestMapping(value = "/serdel/{seid}", method = RequestMethod.GET)
     public String del(@PathVariable("seid") Integer seid) {
         ss.deleteSer(seid);
@@ -63,7 +65,7 @@ public class SerController {
         modelAndView.addObject("ser", ss.findSerseid(seid));
         return modelAndView;
     }
-
+    @RequiresPermissions(value = {"update"})
     @RequestMapping(value = "/serupdate", method = RequestMethod.POST)
     public String update(String seid, @RequestParam("file") MultipartFile muli, String seintro, String sename) throws UnsupportedEncodingException {
         Ser ser = new Ser();
