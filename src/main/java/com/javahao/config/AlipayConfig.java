@@ -12,7 +12,9 @@ import java.io.IOException;
  *以下代码只是为了方便商户测试而提供的样例代码，商户可以根据自己网站的需要，按照技术文档编写,并非一定要使用该代码。
  *该代码仅供学习和研究支付宝接口使用，只是提供一个参考。
  */
-
+/**
+ * Created by ${licong} on 2019/12/2.
+ */
 public class AlipayConfig {
 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -27,7 +29,7 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhK9g6psJS1lYJjZtzy90eLwJgP3iBapnFr4FE1wR6TZspriEs+1s+lJU6ZvaHBchvgvoYH7ArWdIV+Yzh4AwMlM5pA+NCIalvqkdMWJvQ8jJasODTxFSI8VSZO1/DZbWRe7XbtE+CvRDF9KGP/nhte0SsH8yuVXnp1GgKl6DqYT7PFwabFoQNkzoPRJmqzRevxpy0V/7mGDsyTl75kQMyFqq/Ai1SuesRZCsYYnTuDZKTZEqQHRCp6NavBSgPHwtIQLGZhMYZf4qBRzT8aiKKteQpKBNOT8z1CURIK1KcW5vMThDZKEBkg72qGSx9TMYKbxHYyP8pIPF2Uk6vQ9KEQIDAQAB";
 
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url ="https://openapi.alipaydev.com/gateway.do";
+    public static String notify_url ="www.baidu.com";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url =  "http://localhost:8080";

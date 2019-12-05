@@ -3,16 +3,20 @@ package com.javahao.util;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
+
+/**
+ * Created by ${licong} on 2019/12/4.
+ */
 /*随机产生订单编号类*/
 @Component
 public class OrderNumberUtils {
-//    private static char[] array = new char[100];
+    //    private static char[] array = new char[100];
 //    private static char[] arrayOrderNumber = new char[15];
     public static String orderNumber() {
         Random random = new Random();
-        double dd = random.nextDouble() / 3.1415927/3.1415927;
-       String order_number = Double.toString(dd).substring(2, 16);
-       return order_number;
+        double dd = random.nextDouble() / 3.1415927 / 3.1415927;
+        String order_number = Double.toString(dd).substring(2, 16);
+        return order_number;
 //        int num = 48;
 //        int num2 = 97;
 //        for (int j = 0; j < array.length; j++) {
@@ -30,13 +34,8 @@ public class OrderNumberUtils {
 //            Random random = new Random();
 //            arrayOrderNumber[i] = array[random.nextInt(100)];
 //        }
-       // return String.valueOf(array);
-       // return String.valueOf(arrayOrderNumber);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(OrderNumberUtils.orderNumber().toCharArray());
-
+        // return String.valueOf(array);
+        // return String.valueOf(arrayOrderNumber);
 
     }
 }

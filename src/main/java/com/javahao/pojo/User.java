@@ -23,5 +23,5 @@ public class User {
     private Date data;
     private String symptom;
     private String member;
-    private Integer money;
+    private Double money;
 }

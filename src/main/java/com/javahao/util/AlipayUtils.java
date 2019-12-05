@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
-
+/**
+ * Created by ${licong} on 2019/12/4.
+ */
 @Slf4j
 @Component
 public class AlipayUtils {
@@ -20,7 +22,8 @@ public class AlipayUtils {
 
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", "utf-8", AlipayConfig.alipay_public_key, "RSA2");
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl(AlipayConfig.return_url);
+        //支付完成返回要去的页面
+        alipayRequest.setReturnUrl(pay.getUrl());
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
         //订单编号
         String order_number=null;

@@ -30,19 +30,18 @@ public class UserserviceImpl implements UserService {
     }
 
     @Override
-    public void SendSimpleMail(String to) {
+    public void SendSimpleMail(String to, String number) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(MAIL_SENDER);
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject("小豪牙科保护您的健康");
-        simpleMailMessage.setText("预约成功，请您于两天后到小豪牙科(西安市雁塔区南窑国际分院)就诊");
+        simpleMailMessage.setText("预约成功，请您于两天后到小豪牙科(西安市雁塔区南窑国际分院)就诊.\n您的会员号为："+number);
         try{
             js.send(simpleMailMessage);
         }catch(Exception e){
             System.out.println("forbiden");
         }
     }
-
 
 
     @Override
@@ -63,5 +62,20 @@ public class UserserviceImpl implements UserService {
     @Override
     public void update(User user) {
         userDao.update(user);
+    }
+    //查询余额
+    @Override
+    public Double inquire(String member) {
+        return userDao.inquire(member);
+    }
+    //查询会员是否存在
+    @Override
+    public String findByMember(String member) {
+        return userDao.findByMember(member);
+    }
+    //充值
+    @Override
+    public int memberMoney(User user) {
+        return userDao.memberMoney(user);
     }
 }

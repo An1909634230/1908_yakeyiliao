@@ -15,4 +15,10 @@ public interface UserDao {
     void insert(User user);
     User findById(Integer id);
     void update(User user);
+    //充值
+    int memberMoney(User user);
+    //查询余额
+    Double inquire(String member);
+    //查询会员名是否存在
+    String findByMember(String member);
 }
