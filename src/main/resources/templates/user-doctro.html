@@ -31,6 +31,13 @@
        href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:38px">ဂ</i></a>
 </div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so" th:action="@{/user-selectlike}" method="POST">
+            <input type="text" name="dname"  placeholder="请输入医生姓名" autocomplete="off" class="layui-input">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+    </div>
 <xblock>
     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
     <button class="layui-btn" onclick="x_admin_show('添加病人','./useradd')"><i class="layui-icon"></i>添加</button>
@@ -43,13 +50,11 @@
     </th>
     <th>UID</th>
     <th>姓名</th>
-    <th>邮箱</th>
     <th>电话</th>
     <th>日期</th>
     <th>症状</th>
-    <th>会员号</th>
     <th>余额</th>
-    <th>状态</th>
+    <th>医生</th>
     <th>操作</th>
     </thead>
     <tbody>
@@ -60,19 +65,16 @@
         </td>
         <td th:text="${lists.uid }"></td>
         <td th:text="${lists.uname }"></td>
-        <td th:text="${lists.email }"></td>
         <td th:text="${lists.tel }"></td>
         <td th:text="${lists.data }"></td>
         <td th:text="${lists.symptom }"></td>
-        <td th:text="${lists.member }"></td>
         <td th:text="${lists.money }"></td>
-        <td class="td-status">
-            <span class="layui-btn layui-btn-normal layui-btn-sm">已启用</span></td>
+        <td th:text="${lists.dname }"></td>
         <td class="td-manage">
-            <a title="编辑" th:href="@{'/userup/' + ${lists.uid}}">
+            <a title="编辑" th:href="@{'/userdoup/' + ${lists.uid}}">
                 <i class="layui-icon">&#xe642;</i>
             </a>
-            <a title="删除" th:href="@{'/userdel/' + ${lists.uid}}">
+            <a title="删除" th:href="@{'/userdodel/' + ${lists.uid}}">
                 <i class="layui-icon">&#xe640;</i>
             </a>
         </td>

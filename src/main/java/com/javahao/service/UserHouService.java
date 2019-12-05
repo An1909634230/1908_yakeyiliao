@@ -18,4 +18,7 @@ public interface UserHouService {
     public UserHou findUserHouByUid(Integer uid);
 
     public void updateUserHou(UserHou userHou);
+
+    public List<UserHou> selectLike(String dname);
+    public int selectCount();
 }

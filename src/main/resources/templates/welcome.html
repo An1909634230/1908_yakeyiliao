@@ -49,7 +49,7 @@
                     </div>
                     <div class="widget-right">
                         <h4 class="wiget-title">病人</h4>
-                        <span class="numeric color-red">23</span>
+                        <span class="numeric color-red" th:text="${number }"></span>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="widget-right">
                         <h4 class="wiget-title">出诊</h4>
-                        <span class="numeric color-green">23</span>
+                        <span class="numeric color-green" th:text="${number }"></span>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="widget-right">
                         <h4 class="wiget-title">收入</h4>
-                        <span class="numeric color-yellow">$7300</span>
+                        <span class="numeric color-yellow">$100000</span>
                     </div>
                 </div>
             </div>
@@ -89,29 +89,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Rajesh</td>
-                                    <td>牙科</td>
-                                    <td>
-                                        <span class="badge badge-success">可出诊</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Riya</td>
-                                    <td>牙科</td>
-                                    <td>
-                                        <span class="badge badge-warning">休假</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Siri</td>
-                                    <td>牙科</td>
-                                    <td>
-                                        <span class="badge badge-danger">不可出诊</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Rajesh</td>
+                                <tr th:each="listss,memberStat : ${lists }">
+                                    <td th:text="${listss.dname }"></td>
                                     <td>牙科</td>
                                     <td>
                                         <span class="badge badge-success">可出诊</span>
@@ -139,69 +118,17 @@
                             <th>医生</th>
                             <th>检查</th>
                             <th>日期</th>
-                            <th>时间</th>
                             <th>状态</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Rajesh</td>
-                            <td>Manoj Kumar</td>
+                        <tr th:each="lists,memberStat : ${list }">
+                            <td th:text="${lists.uname }"></td>
+                            <td th:text="${lists.dname }"></td>
                             <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>12:10PM</td>
+                            <td th:text="${lists.data }"></td>
                             <td>
                                 <span class="badge badge-success">可出诊</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Riya</td>
-                            <td>Daniel </td>
-                            <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>1:10PM</td>
-                            <td>
-                                <span class="badge badge-warning">休假</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Siri</td>
-                            <td>Daniel </td>
-                            <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>1:30PM</td>
-                            <td>
-                                <span class="badge badge-danger">不可出诊</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rajesh</td>
-                            <td>Manoj Kumar</td>
-                            <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>12:10PM</td>
-                            <td>
-                                <span class="badge badge-success">可出诊</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Riya</td>
-                            <td>Daniel </td>
-                            <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>1:10PM</td>
-                            <td>
-                                <span class="badge badge-warning">休假</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Siri</td>
-                            <td>Daniel </td>
-                            <td>牙科</td>
-                            <td>12-10-2018</td>
-                            <td>1:30PM</td>
-                            <td>
-                                <span class="badge badge-danger">不可出诊</span>
                             </td>
                         </tr>
                         </tbody>
