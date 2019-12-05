@@ -55,4 +55,9 @@ public class UserHouServiceImpl implements UserHouService {
     public int selectCount() {
         return ud.selectCount();
     }
+
+    @Override
+    public int selectSum() {
+        return ud.selectSum();
+    }
 }

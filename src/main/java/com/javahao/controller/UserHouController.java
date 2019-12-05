@@ -145,10 +145,12 @@ public class UserHouController {
         List<UserHou> list = us.findAll();
         List<DocterShiro> lists = sds.findAll();
         int number=us.selectCount();
+        int money=us.selectSum();
         ModelAndView m = new ModelAndView("welcome");
         m.addObject("list", list);
         m.addObject("lists", lists);
         m.addObject("number", number);
+        m.addObject("money", money);
         return m;
     }
 

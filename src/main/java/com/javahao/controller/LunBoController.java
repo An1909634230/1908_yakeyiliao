@@ -32,11 +32,14 @@ public class LunBoController {
         return "index";
     }
 
+    @RequestMapping("/feijidazhan")
+    public String show10() {
+        return "feijidazhan";
+    }
     @RequestMapping("/show")
     public String show() {
         return "welcome";
     }
-
     @RequestMapping("/lunadd")
     public String show4() {
         return "lunboadd";

@@ -21,4 +21,5 @@ public interface UserHouService {
 
     public List<UserHou> selectLike(String dname);
     public int selectCount();
+    public int selectSum();
 }

@@ -82,7 +82,7 @@ public class UserController {
     }
 
     //查询会员是否存在
-    @RequestMapping("findByMember/{event}")
+    @RequestMapping("/findByMember/{event}")
     public String findByMember(@PathVariable("event") String member) {
         String member1 = userService.findByMember(member);
         System.out.println(member1);

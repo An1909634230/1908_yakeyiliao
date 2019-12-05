@@ -59,7 +59,7 @@
                         <span class="ti-bar-chart"></span>
                     </div>
                     <div class="widget-right">
-                        <h4 class="wiget-title">出诊</h4>
+                        <h4 class="wiget-title">预约</h4>
                         <span class="numeric color-green" th:text="${number }"></span>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="widget-right">
                         <h4 class="wiget-title">收入</h4>
-                        <span class="numeric color-yellow">$100000</span>
+                        <span class="numeric color-yellow" th:text="${money }+元"></span>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                                     <td th:text="${listss.dname }"></td>
                                     <td>牙科</td>
                                     <td>
-                                        <span class="badge badge-success">可出诊</span>
+                                        <span  class="badge badge-danger">可出诊</span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -128,7 +128,7 @@
                             <td>牙科</td>
                             <td th:text="${lists.data }"></td>
                             <td>
-                                <span class="badge badge-success">可出诊</span>
+                                <span class="badge badge-warning">已预约</span>
                             </td>
                         </tr>
                         </tbody>

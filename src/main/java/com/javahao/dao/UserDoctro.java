@@ -12,6 +12,10 @@ import java.util.List;
 @Mapper
 public interface UserDoctro {
     public List<UserHou> selectLike(String dname);
+
     @Select("select count(*) from user")
     public int selectCount();
+
+    @Select("select SUM(money) from user")
+    public int selectSum();
 }
