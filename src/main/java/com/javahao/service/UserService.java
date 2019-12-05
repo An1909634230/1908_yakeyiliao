@@ -16,7 +16,7 @@ public interface UserService {
     void insert(User user);
     User findById(Integer id);
     void update(User user);
-    void SendSimpleMail(String to,String number);
+    void SendSimpleMail(String to,String number,String name);
     //充值
     int memberMoney(User user);
     //查询余额

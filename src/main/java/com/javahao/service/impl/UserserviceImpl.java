@@ -30,12 +30,12 @@ public class UserserviceImpl implements UserService {
     }
 
     @Override
-    public void SendSimpleMail(String to, String number) {
+    public void SendSimpleMail(String to, String number,String name) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom(MAIL_SENDER);
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject("小豪牙科保护您的健康");
-        simpleMailMessage.setText("预约成功，请您于两天后到小豪牙科(西安市雁塔区南窑国际分院)就诊.\n您的会员号为："+number);
+        simpleMailMessage.setText("尊敬的用户:"+name+"！\n"+"您已预约成功，请于两天后到小豪牙科(西安市雁塔区南窑国际分院)就诊.\n您的会员号为："+number);
         try{
             js.send(simpleMailMessage);
         }catch(Exception e){

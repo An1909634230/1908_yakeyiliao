@@ -38,9 +38,10 @@ public class UserController {
         user.setMember(number);
         user.setMoney(0.0);
         String to = user.getEmail();
+        String name=user.getUname();
         try {
             userService.insert(user);
-            userService.SendSimpleMail(to, number);
+            userService.SendSimpleMail(to, number,name);
             return "success";
         } catch (Exception e) {
         }
